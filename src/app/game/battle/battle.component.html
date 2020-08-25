@@ -1,0 +1,23 @@
+<div *ngIf="currentNumberOfPlayersInRoom === reuiredNumberOfPlayersForGame; else wait">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg text-center" *ngFor="let board of boards; let i = index">
+        <h5>
+          Igrač {{ board.player.id }}
+          <span  *ngIf="i == player">(Ti)</span>
+          <span  *ngIf="i !== player">(Protivnik)</span>
+          // <strong>Rezultat: {{ board.player.score }}</strong>
+        </h5>
+        <app-board [board]="board" [i]="i" [player]="player"></app-board>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #wait>
+  <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div>
+      <h2>Čekanje protivnika</h2>
+      <mat-progress-spinner style="margin: 0 auto;" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</ng-template>

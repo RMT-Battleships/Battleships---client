@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { BoardComponent } from './game/board/board.component';
+import { BattleComponent } from './game/battle/battle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     BoardComponent,
+    BattleComponent,
   ],
   imports: [
     BrowserModule,
