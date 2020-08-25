@@ -10,6 +10,7 @@ import { GameComponent } from './game/game.component';
 import { BoardComponent } from './game/board/board.component';
 import { BattleComponent } from './game/battle/battle.component';
 import { WaitingComponent } from "./game/battle/waiting/waiting.component";
+import { StrategyComponent } from './game/strategy/strategy.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { WaitingComponent } from "./game/battle/waiting/waiting.component";
     GameComponent,
     BoardComponent,
     BattleComponent,
-    WaitingComponent
+    WaitingComponent,
+    StrategyComponent
   ],
   imports: [
     BrowserModule,
