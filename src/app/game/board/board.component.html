@@ -1,0 +1,14 @@
+<table class="table table-bordered" [style.opacity]="i == player ? 0.5 : 1">
+  <tr *ngFor="let row of board.cells; let j = index">
+    <td *ngFor="let col of row; let k = index"
+        (click)="i !== player ? emitCoordinates($event) : ''"
+        [style.cursor]="i == player ? 'default' : 'pointer'"
+        [class.ship]="col.value == 'ship'"
+        [class.sea]="col.value !== 'ship'"
+        class="battleship-tile"
+        id="t{{i}}{{j}}{{k}}"
+    >
+      {{col.status}}
+    </td>
+  </tr>
+</table>
