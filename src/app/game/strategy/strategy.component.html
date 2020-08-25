@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md">
-      <app-board [board]="board"></app-board>
+      <app-board [board]="board" [i]="1" (coordinates)="setCoordinates($event)"></app-board>
     </div>
     <div class="col-12 col-md available-ships">
-      <!--available ships for placemant on table-->
+      <app-ships (selectedShipEmitter)="setSelectedShip($event)"></app-ships>
     </div>
   </div>
 </div>
