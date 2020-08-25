@@ -9,6 +9,10 @@
   background-color: #ff3860;
   color: #fff;
 }
+.lock {
+  background-color: grey;
+  color: #fff;
+}
 table {
   margin: 0 auto;
 }
