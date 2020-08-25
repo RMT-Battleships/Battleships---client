@@ -11,6 +11,7 @@ import { BoardComponent } from './game/board/board.component';
 import { BattleComponent } from './game/battle/battle.component';
 import { WaitingComponent } from "./game/battle/waiting/waiting.component";
 import { StrategyComponent } from './game/strategy/strategy.component';
+import { ShipsComponent } from "./game/strategy/ships/ships.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StrategyComponent } from './game/strategy/strategy.component';
     BoardComponent,
     BattleComponent,
     WaitingComponent,
-    StrategyComponent
+    StrategyComponent,
+    ShipsComponent
   ],
   imports: [
     BrowserModule,

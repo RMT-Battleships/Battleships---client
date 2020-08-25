@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="text-center">
+    <h2>Dostupni brodovi za postavljanje</h2>
+  </div>
+  <div *ngFor="let category of ships; let i = index">
+    <hr/>
+    <div class="row justify-content-center">
+      <table *ngFor="let ship of category; let j = index"
+             [ngClass]="glowClass(i, j)"
+             class="mx-2"
+      >
+        <tr *ngFor="let height of [].constructor(ship.y);">
+          <td *ngFor="let length of [].constructor(ship.x);"
+              (click)="selectedShip($event)"
+              (dblclick)="rotateShip($event)"
+              [style.cursor]="'pointer'"
+              id="{{i}}{{j}}"
+          ></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <hr/>
+</div>
