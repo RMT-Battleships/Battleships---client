@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import { Board } from "../board";
+import { Board } from "../interfaces/board";
 
 @Component({
   selector: 'app-board',

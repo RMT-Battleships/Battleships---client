@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Board } from "../board";
-import { BoardService } from "../board.service";
+import { Board } from "../interfaces/board";
+import { BoardService } from "../services/board.service";
 
 @Component({
   selector: 'app-battle',

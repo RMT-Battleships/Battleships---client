@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Player } from "./player";
-import { Board } from "./board";
+import { Player } from "../interfaces/player";
+import { Board } from "../interfaces/board";
 
 @Injectable({
   providedIn: 'root'
