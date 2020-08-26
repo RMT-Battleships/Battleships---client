@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Board } from "../interfaces/board";
 import { BoardService } from "../services/board.service";
@@ -14,7 +14,6 @@ import { Ship } from "../interfaces/ship";
 export class StrategyComponent implements OnInit {
   board: Board;
   selectedShip: Ship;
-  coordinates: { x: number, y: number };
 
   constructor(private boardService: BoardService,
               private shipService: ShipService) { }
@@ -29,9 +28,17 @@ export class StrategyComponent implements OnInit {
   }
 
   setCoordinates(coordinates) {
-    this.coordinates = {
-      x: coordinates.row,
-      y: coordinates.col
+    if(this.shipService.getShips().length > 0){
+      let shipForPlacing: Ship = {
+        x: coordinates.col,
+        y: coordinates.row,
+        length: this.selectedShip.length,
+        horizontal: this.selectedShip.horizontal
+      }
+
+      if(this.boardService.setShip(shipForPlacing)){
+        this.selectedShip = this.shipService.placeShip(shipForPlacing);
+      }
     }
   }
 
