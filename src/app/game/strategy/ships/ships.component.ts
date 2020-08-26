@@ -10,8 +10,8 @@ import { Ship } from "../../interfaces/ship";
 export class ShipsComponent implements OnInit {
   @Output() selectedShipEmitter = new EventEmitter<Ship>();
 
-  selectedRow;
-  selectedCol;
+  selectedRow: number;
+  selectedCol: number;
 
   constructor(private shipService: ShipService) {
   }
@@ -31,7 +31,11 @@ export class ShipsComponent implements OnInit {
   }
 
   rotateShip(e) {
-    this.shipService.rotateShip(e.target.id.slice(0,1),e.target.id.slice(1,2));
+    this.selectedRow = +e.target.id.slice(0,1);
+    this.selectedCol = +e.target.id.slice(1.2);
+
+    this.shipService.rotateShip(this.selectedRow,this.selectedCol);
+    this.selectedShipEmitter.emit(this.ships[this.selectedRow][this.selectedCol]);
   }
 
   get ships () {
