@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Ship} from "../interfaces/ship";
+import {add} from "ngx-bootstrap/chronos";
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +26,14 @@ export class ShipService {
   ]
 
   ships = [];
+  placedShips = [];
+  numberOfShipCategories: number = this.availableShips.length;
 
-  constructor() { }
+  constructor() {
+  }
 
   createShips() {
-    const numberOfAvailableShips: number = this.availableShips.length;
-
-    for (let i = 0; i < numberOfAvailableShips; i++) {
+    for (let i = 0; i < this.numberOfShipCategories; i++) {
       this.ships[i] = []
       let newShip = {
         x: this.availableShips[i].length,
@@ -39,10 +42,51 @@ export class ShipService {
         horizontal: true
       };
 
-      for (let j = 0; j < this.availableShips[i].quantity; j++){
+      for (let j = 0; j < this.availableShips[i].quantity; j++) {
         this.ships[i].push(newShip);
       }
     }
+  }
+
+  placeShip(ship: Ship): Ship {
+    let temp: Ship;
+    let placed = false;
+
+    for (let i = 0; i < this.numberOfShipCategories; i++) {
+      if (this.ships[i][0].length == ship.length) {
+        this.ships[i].splice(0, 1);
+
+        if (this.ships[i].length == 0) {
+          this.ships.splice(i, 1);
+        }
+
+        if(this.ships[i] === undefined){
+          if(this.ships.length === 0){
+            temp = null;
+          }
+          else {
+            temp = this.ships[i-1][0];
+          }
+        }
+        else {
+          temp = this.ships[i][0]
+        }
+        break;
+      }
+    }
+
+    for (let i = 0; i < this.placedShips.length; i++) {
+      if (this.placedShips[i][0].length == ship.length) {
+        this.placedShips[i].push(ship);
+        placed = true;
+        break;
+      }
+    }
+
+    if (!placed)
+      this.placedShips.push([ship]);
+
+    return temp;
   }
 
   rotateShip(i, j) {
