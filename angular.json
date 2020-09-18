@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "rmt-client"
+  "defaultProject": "rmt-client",
+  "cli": {
+    "analytics": false
+  }
 }

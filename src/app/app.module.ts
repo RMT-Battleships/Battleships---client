@@ -17,6 +17,13 @@ import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
 import { GuestComponent } from './menu/guest/guest.component';
 import { RangComponent } from './rang/rang.component';
+import { AccountComponent } from './account/account.component';
+import { LoginComponent } from './account/login/login.component';
+import { SingupComponent } from './account/singup/singup.component';
+import { PassResetComponent } from './account/pass-reset/pass-reset.component';
+import { EditPassComponent } from './account/edit-pass/edit-pass.component';
+import { AccInfoComponent } from './account/acc-info/acc-info.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +38,13 @@ import { RangComponent } from './rang/rang.component';
     MainComponent,
     UserComponent,
     GuestComponent,
-    RangComponent
+    RangComponent,
+    AccountComponent,
+    LoginComponent,
+    SingupComponent,
+    PassResetComponent,
+    EditPassComponent,
+    AccInfoComponent
   ],
   imports: [
     BrowserModule,
