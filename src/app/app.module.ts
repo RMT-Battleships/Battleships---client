@@ -12,6 +12,11 @@ import { BattleComponent } from './game/battle/battle.component';
 import { WaitingComponent } from "./game/battle/waiting/waiting.component";
 import { StrategyComponent } from './game/strategy/strategy.component';
 import { ShipsComponent } from "./game/strategy/ships/ships.component";
+import { MenuComponent } from './menu/menu.component';
+import { MainComponent } from './menu/main/main.component';
+import { UserComponent } from './menu/user/user.component';
+import { GuestComponent } from './menu/guest/guest.component';
+import { RangComponent } from './rang/rang.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { ShipsComponent } from "./game/strategy/ships/ships.component";
     BattleComponent,
     WaitingComponent,
     StrategyComponent,
-    ShipsComponent
+    ShipsComponent,
+    MenuComponent,
+    MainComponent,
+    UserComponent,
+    GuestComponent,
+    RangComponent
   ],
   imports: [
     BrowserModule,
