@@ -4,14 +4,19 @@ import { AccInfoComponent } from './account/acc-info/acc-info.component';
 import { EditPassComponent } from './account/edit-pass/edit-pass.component';
 import { LoginComponent } from './account/login/login.component';
 import { SingupComponent } from './account/singup/singup.component';
+import { BattleComponent } from './game/battle/battle.component';
 import { WaitingComponent } from './game/battle/waiting/waiting.component';
+import { BoardComponent } from './game/board/board.component';
+import { GameComponent } from './game/game.component';
+import { ShipsComponent } from './game/strategy/ships/ships.component';
+import { StrategyComponent } from './game/strategy/strategy.component';
 import { GuestComponent } from './menu/guest/guest.component';
 import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  //{ path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'acc-info', component: AccInfoComponent },
   { path: 'edit-pass', component: EditPassComponent },
   { path: 'singup', component: SingupComponent },
@@ -19,7 +24,13 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'guest', component: GuestComponent },
   { path: 'user', component: UserComponent },
-  { path: 'battle/waiting', component: WaitingComponent }];
+  {
+    path: 'game', component: GameComponent, children:
+      [{ path: 'strategy', component: StrategyComponent },
+      { path: 'battle', component: BattleComponent },
+      { path: 'waiting', component: WaitingComponent }]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
