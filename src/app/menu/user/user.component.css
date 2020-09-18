@@ -1,6 +1,8 @@
 .user{
-    width: 350px;
-    padding: 40px;
+  background: #373743;
+  width: 100%;
+  height: 100%;
+    padding: 250px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -10,25 +12,25 @@
     
 .button{
       border:0;
-      background: none;
+      background: #989C8F;
       display: block;
       margin: 20px auto;
       text-align: center;
-      border: 2px solid #c72323;
+      border: 2px solid #DD4B1A;
       padding: 14px 40px;
       width: 200px;
       outline: none;
-      color: black;
+      color: #F0F0F0;
       border-radius: 24px;
       transition: 0.25s;
       cursor: pointer;
     }
     
     .button:hover{
-      background: chocolate;
+      background: #DD4B1A;
     }
     
     .user h1{
-     color: chocolate;
+     color: #DD4B1A;
      font-weight: 500;
     }
