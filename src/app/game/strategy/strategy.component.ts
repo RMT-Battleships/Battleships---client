@@ -4,6 +4,7 @@ import { Board } from "../interfaces/board";
 import { BoardService } from "../services/board.service";
 import { ShipService } from "../services/ship.service";
 import { Ship } from "../interfaces/ship";
+import { WebSocketService } from '../services/web-socket.service';
 
 @Component({
   selector: 'app-strategy',
@@ -18,11 +19,14 @@ export class StrategyComponent implements OnInit {
   constructor(private boardService: BoardService,
               private shipService: ShipService) { }
 
+
+
   ngOnInit(): void {
     this.board = this.boardService.getBoards()[0];
     this.shipService.createShips();
   }
 
+  
   setSelectedShip(element) {
     this.selectedShip = element;
   }
@@ -42,4 +46,5 @@ export class StrategyComponent implements OnInit {
     }
   }
 
+  
 }

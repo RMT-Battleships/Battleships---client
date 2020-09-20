@@ -1,23 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, EventEmitter, OnChanges, OnInit, Output } from '@angular/core';
 import { ShipService } from "../../services/ship.service";
 import { Ship } from "../../interfaces/ship";
+import { WebSocketService } from '../../services/web-socket.service';
+import { BoardService } from '../../services/board.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ships',
   templateUrl: './ships.component.html',
   styleUrls: ['./ships.component.css']
 })
-export class ShipsComponent implements OnInit {
+export class ShipsComponent implements DoCheck, OnInit{
   @Output() selectedShipEmitter = new EventEmitter<Ship>();
 
   selectedRow: number;
   selectedCol: number;
 
-  constructor(private shipService: ShipService) {
+  constructor(private shipService: ShipService,
+     private webSockeService: WebSocketService,
+      private boardService: BoardService,
+      protected router: Router) {
   }
 
   ngOnInit(): void {
   }
+  
 
   selectedShip(e){
     this.selectedRow = +e.target.id.slice(0,1);
@@ -41,4 +48,14 @@ export class ShipsComponent implements OnInit {
   get ships () {
     return this.shipService.getShips();
   }
+
+  ngDoCheck(): void {
+    if(this.shipService.getShips().length===0){
+      let matrix = this.boardService.getBoards()[0];
+      this.webSockeService.emit('ready', matrix);
+      this.router.navigate(['/game/waiting']);
+    }
+  }
+
+
 }

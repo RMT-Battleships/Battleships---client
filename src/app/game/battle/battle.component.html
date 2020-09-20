@@ -6,10 +6,10 @@
           Igrač {{ board.player.id }}
           <span  *ngIf="i == player">(Ti)</span>
           <span  *ngIf="i !== player">(Protivnik)</span>
-          // <strong>Rezultat: {{ board.player.score }}</strong>
+         <strong>Rezultat: {{ board.player.score }}</strong>
         </h5>
-        <app-board [board]="board" [i]="i" [player]="player"></app-board>
-      </div>
+        <app-board [board]="board" [i]="i" [player]="player" (coordinates) = "fireTorpedo($event)"></app-board>
+      </div> 
     </div>
   </div>
 </div>
