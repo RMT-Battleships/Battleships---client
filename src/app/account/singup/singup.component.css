@@ -16,7 +16,7 @@
     font-weight: 500;
 }
 
-.box input[type = "text"],.box input[type = "password"]{
+.box input[type = "email"], .box input[type = "text"],.box input[type = "password"]{
     border: 0;
     background: none;
     display: block;
@@ -31,13 +31,14 @@
     transition: 0.25s;
 }
 
-.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+.box input[type = "email"]:focus,.box input[type = "text"]:focus,.box input[type = "password"]:focus{
     width: 280px;
     border-color: #989C8F;
 
 }
 
-.box input[type = "submit"]{
+.box button{
+
     border: 0;
     background: #989C8F;
     display: block;
@@ -53,6 +54,6 @@
     cursor: pointer;
 }
 
-.box input[type = "submit"]:hover{
+.box button:hover{
     background: #DD4B1A;
 }

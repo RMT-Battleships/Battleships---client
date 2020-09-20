@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +22,7 @@ import { SingupComponent } from './account/singup/singup.component';
 import { PassResetComponent } from './account/pass-reset/pass-reset.component';
 import { EditPassComponent } from './account/edit-pass/edit-pass.component';
 import { AccInfoComponent } from './account/acc-info/acc-info.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -50,7 +50,9 @@ import { AccInfoComponent } from './account/acc-info/acc-info.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

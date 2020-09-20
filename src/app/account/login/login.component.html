@@ -1,10 +1,9 @@
 
 
-
-
-<form class = "box" action="" method="post">
+<form [formGroup] = "loginForm" class = "box" (ngSubmit) = "onLogin()">
     <h1>Login</h1>
-    <input type="text" name = "" placeholder="Username">
-    <input type="password" name = "" placeholder="Password">
-    <input type="submit" name = "" value="Login" >
+    <p *ngIf="show">Pogresna sifra ili username. Probajte ponovo</p>
+    <input type="text" name = "" placeholder="Username" formControlName = "username">
+    <input type="password" name = "" placeholder="Password" formControlName = "password">
+    <button type="submit" [disabled] = "loginForm.invalid">Potvrdi</button>
 </form>

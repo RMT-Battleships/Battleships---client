@@ -16,7 +16,7 @@ import { UserComponent } from './menu/user/user.component';
 
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'acc-info', component: AccInfoComponent },
   { path: 'edit-pass', component: EditPassComponent },
   { path: 'singup', component: SingupComponent },

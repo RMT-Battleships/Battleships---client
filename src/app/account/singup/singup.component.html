@@ -1,10 +1,10 @@
-<form action="" class="box" method="POST">
+<form [formGroup]="signupForm" class="box" (ngSubmit)="onSignup()">
     <h1>Create new account</h1>
-    <input type="text" name="" placeholder="Ime">
-    <input type="text" name="" placeholder="Prezime">
-    <input type="text" name="" placeholder="email">
-    <input type="text" name="" placeholder="username">
-    <input type="password" name="" placeholder="Sifra">
-    <input type="password" name="" placeholder="Potvrda sifre">
-    <input type="submit" name="" value="Potvrdi">
+    <p *ngIf="show">Uneti username vec postoji. Pokusajte ponovo.</p>
+    <input type="text" name="" placeholder="Ime" formControlName = "name">
+    <input type="text" name="" placeholder="Prezime" formControlName = "surname">
+    <input type="email" name="" placeholder="email" formControlName = "email" required>
+    <input type="text" name="" placeholder="username" formControlName = "username">
+    <input type="password" name="password" placeholder="Sifra" formControlName = "password">
+    <button type="submit" [disabled] = "signupForm.invalid">Potvrdi</button>
 </form>
