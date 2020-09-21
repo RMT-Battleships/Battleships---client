@@ -1,6 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Ship} from "../interfaces/ship";
-import {add} from "ngx-bootstrap/chronos";
+import { Injectable } from '@angular/core';
+import { Ship } from '../interfaces/ship';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class ShipService {
       length: 1,
       quantity: 4
     },
-  ]
+  ];
 
   ships = [];
   placedShips = [];
@@ -34,11 +33,12 @@ export class ShipService {
 
   createShips() {
     for (let i = 0; i < this.numberOfShipCategories; i++) {
-      this.ships[i] = []
-      let newShip = {
+      this.ships[i] = [];
+      const newShip = {
         x: this.availableShips[i].length,
         y: 1,
         length: this.availableShips[i].length,
+        hits: 0,
         horizontal: true
       };
 
@@ -53,44 +53,45 @@ export class ShipService {
     let placed = false;
 
     for (let i = 0; i < this.numberOfShipCategories; i++) {
-      if (this.ships[i][0].length == ship.length) {
+      if (this.ships[i][0].length === ship.length) {
         this.ships[i].splice(0, 1);
 
-        if (this.ships[i].length == 0) {
+        if (this.ships[i].length === 0) {
           this.ships.splice(i, 1);
         }
 
-        if(this.ships[i] === undefined){
-          if(this.ships.length === 0){
+        if (this.ships[i] === undefined){
+          if (this.ships.length === 0){
             temp = null;
           }
           else {
-            temp = this.ships[i-1][0];
+            temp = this.ships[i - 1][0];
           }
         }
         else {
-          temp = this.ships[i][0]
+          temp = this.ships[i][0];
         }
         break;
       }
     }
 
-    for (let i = 0; i < this.placedShips.length; i++) {
-      if (this.placedShips[i][0].length == ship.length) {
-        this.placedShips[i].push(ship);
+    for (const placedShip of this.placedShips) {
+      if (placedShip[0].length === ship.length) {
+        placedShip.push(ship);
         placed = true;
         break;
       }
     }
 
-    if (!placed)
+    if (!placed) {
       this.placedShips.push([ship]);
+    }
 
     return temp;
   }
 
   rotateShip(i, j) {
-    let temp = this.ships[i][j].x;
+    const temp = this.ships[i][j].x;
     this.ships[i][j].x = this.ships[i][j].y;
     this.ships[i][j].y = temp;
     this.ships[i][j].horizontal = !this.ships[i][j].horizontal;
