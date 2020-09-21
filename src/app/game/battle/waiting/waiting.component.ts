@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebSocketService } from '../../services/web-socket.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-waiting',
@@ -8,9 +9,14 @@ import { WebSocketService } from '../../services/web-socket.service';
 })
 export class WaitingComponent implements OnInit {
 
-  constructor(private webSocketServe: WebSocketService) { }
+  constructor(private webSocketServe: WebSocketService,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.webSocketServe.listen('paired').subscribe(() => {
+      this.router.navigate(['/game/battle']);
+    });
   }
 
 }
+
