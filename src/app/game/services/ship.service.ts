@@ -34,7 +34,7 @@ export class ShipService {
   createShips() {
     for (let i = 0; i < this.numberOfShipCategories; i++) {
       this.ships[i] = [];
-      const newShip = {
+      const newShip: Ship = {
         x: this.availableShips[i].length,
         y: 1,
         length: this.availableShips[i].length,

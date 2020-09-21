@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
 
-import { Player } from "../interfaces/player";
-import { Board } from "../interfaces/board";
-import { Ship } from "../interfaces/ship";
+import { Player } from '../interfaces/player';
+import { Board } from '../interfaces/board';
+import { Ship } from '../interfaces/ship';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardService {
 
-  playerId: number = 1;
+  playerId = 1;
   boards: Board[] = [];
 
   constructor() { }
 
   createBoard(size: number = 10) {
-    let cells = [];
+    const newCells = [];
 
     for (let i = 0; i < size; i++) {
-      cells[i] = [];
+      newCells[i] = [];
       for (let j = 0; j < size; j++) {
-        cells[i][j] = {hit: false, points: 0, value: 'sea'};
+        newCells[i][j] = {hit: false, points: 0, value: 'sea'};
       }
     }
 
-    let newPlayer: Player = {
+    const newPlayer: Player = {
         id: this.playerId++,
         score: 0
-      },
-      board: Board = {
+      };
+    const board: Board = {
         player: newPlayer,
-        cells: cells
-      }
+        cells: newCells
+      };
 
     this.boards.push(board);
   }
@@ -41,12 +41,17 @@ export class BoardService {
   }
 
   setShip(ship: Ship): boolean {
-    let boardSize = this.boards[0].cells.length;
+    const boardSize = this.boards[0].cells.length;
     let startI = +ship.y - 1;
     startI = startI < 0 ? 0 : startI;
     let startJ = +ship.x - 1;
     startJ = startJ < 0 ? 0 : startJ;
-    let endI, endJ;
+    let endI;
+    let endJ;
+
+    if (this.overlap(this.boards[0].cells, ship)){
+      return false;
+    }
 
     if (ship.horizontal) {
       if (ship.length + +ship.x <= boardSize) {
@@ -63,6 +68,7 @@ export class BoardService {
               this.boards[0].cells[i][j].value = 'ship';
             } else {
               this.boards[0].cells[i][j].points = -1;
+              this.boards[0].cells[i][j].value = 'lock';
             }
           }
         }
@@ -83,11 +89,27 @@ export class BoardService {
               this.boards[0].cells[i][j].value = 'ship';
             } else {
               this.boards[0].cells[i][j].points = -1;
+              this.boards[0].cells[i][j].value = 'lock';
             }
           }
         }
 
         return true;
+      }
+    }
+    return false;
+  }
+
+  protected overlap(board, ship) {
+
+    const xMax = (ship.horizontal) ? +ship.x + +ship.length : +ship.x + 1;
+    const yMax = (ship.horizontal) ?  +ship.y + 1 : +ship.y + +ship.length;
+
+    for (let i = ship.y; i < yMax; i++) {
+      for (let j = ship.x; j < xMax; j++) {
+        if (board[i][j].value !== 'sea') {
+          return true;
+        }
       }
     }
     return false;
