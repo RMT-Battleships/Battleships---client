@@ -24,7 +24,7 @@ export class ShipsComponent implements DoCheck, OnInit{
 
   ngOnInit(): void {
   }
-  
+
 
   selectedShip(e){
     this.selectedRow = +e.target.id.slice(0,1);
@@ -38,10 +38,10 @@ export class ShipsComponent implements DoCheck, OnInit{
   }
 
   rotateShip(e) {
-    this.selectedRow = +e.target.id.slice(0,1);
+    this.selectedRow = +e.target.id.slice(0, 1);
     this.selectedCol = +e.target.id.slice(1.2);
 
-    this.shipService.rotateShip(this.selectedRow,this.selectedCol);
+    this.shipService.rotateShip(this.selectedRow, this.selectedCol);
     this.selectedShipEmitter.emit(this.ships[this.selectedRow][this.selectedCol]);
   }
 
@@ -50,8 +50,8 @@ export class ShipsComponent implements DoCheck, OnInit{
   }
 
   ngDoCheck(): void {
-    if(this.shipService.getShips().length===0){
-      let matrix = this.boardService.getBoards()[0];
+    if (this.shipService.getShips().length === 0){
+      const matrix = this.boardService.getBoards()[0];
       this.webSockeService.emit('ready', matrix);
       this.router.navigate(['/game/waiting']);
     }
