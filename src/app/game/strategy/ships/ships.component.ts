@@ -51,7 +51,7 @@ export class ShipsComponent implements DoCheck, OnInit{
 
   ngDoCheck(): void {
     if (this.shipService.getShips().length === 0){
-      this.webSockeService.emit('ready', this.shipService.placedShips);
+      this.webSockeService.emit('ready',[]);
       this.router.navigate(['/game/waiting']);
     }
   }

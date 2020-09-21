@@ -13,6 +13,7 @@ import { StrategyComponent } from './game/strategy/strategy.component';
 import { GuestComponent } from './menu/guest/guest.component';
 import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
+import { RangComponent } from './rang/rang.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'guest', component: GuestComponent },
   { path: 'user', component: UserComponent },
+  { path: 'rang', component: RangComponent },
   {
     path: 'game', component: GameComponent, children:
       [{ path: 'strategy', component: StrategyComponent },

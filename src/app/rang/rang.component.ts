@@ -9,7 +9,8 @@ export class RangComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+ 
   }
 
 }
