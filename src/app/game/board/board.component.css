@@ -1,34 +1,34 @@
 .battleship-tile {
-  color: black!important;
+  color: #DD4B1A!important;
 }
 .ship {
-  background-color: #23d160;
+  background-color: #DD4B1A;
   color: #fff;
 }
 .sea {
-  background-color: #ff3860;
+  background-color: #F0F0F0;
   color: #fff;
 }
 .lock {
-  background-color: grey;
+  background-color: #989C8F;
   color: #fff;
 }
 .hitSea{
   background: repeating-linear-gradient(
     -55deg,
-    #222,
-    #222 10px,
-    #333 10px,
-    #333 20px
+    rgb(51, 50, 50),
+    rgb(51, 50, 50) 10px,
+    rgb(160, 157, 157) 10px,
+    rgb(160, 157, 157) 20px
   );
 }
 .hitShip {
   background: repeating-linear-gradient(
     -55deg,
-    #666,
-    #666 10px,
-    #777 10px,
-    #777 20px
+    #DD4B1A,
+    #DD4B1A 10px,
+    #862809d8 10px,
+    #862809d8 20px
   );
 }
 table {
@@ -38,7 +38,7 @@ tr:hover {
   background-color: transparent;
 }
 th, td {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #DD4B1A;
   padding: 0.75em 0.75em;
   vertical-align: middle;
   height: 50px;

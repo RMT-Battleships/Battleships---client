@@ -1,14 +1,18 @@
+.container{
+  background: #373743;
+}
+
 table {
   margin: 0 auto;
 }
 .selected {
-  border: 2px solid #23d160;
+  border: 2px solid  #dd4b1a4b;
 }
 tr:hover {
-  background-color: transparent;
+  background-color: #DD4B1A;
 }
 th, td {
-  border: 1px solid #dbdbdb;
+  border: 1px solid #DD4B1A;
   padding: 0.5em 0.75em;
   vertical-align: middle;
   height: 50px;
