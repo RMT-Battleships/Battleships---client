@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from "./services/board.service";
 import { WebSocketService } from './services/web-socket.service';
+import {ShipService} from "./services/ship.service";
 
 const REQUIRED_NUMBER_OF_PLAYERS: number = 2;
 const BOARD_SIZE: number = 10;
@@ -9,12 +10,12 @@ const BOARD_SIZE: number = 10;
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
-  providers: [BoardService, WebSocketService]
+  providers: [BoardService, WebSocketService, ShipService]
 })
 export class GameComponent implements OnInit {
   gameId: string;
-  
-  constructor(private boardService: BoardService , private webSocketService:WebSocketService) {}
+
+  constructor(private boardService: BoardService , private webSocketService: WebSocketService) {}
   ngOnInit(): void {
     this.createBoards();
     this.webSocketService.listen('test event').subscribe((data) =>{

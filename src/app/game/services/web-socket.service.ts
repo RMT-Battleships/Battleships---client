@@ -8,6 +8,8 @@ import * as io from 'socket.io-client';
 })
 export class WebSocketService {
 
+  roomOwner;
+  onTurn = false;
 
   socket: any;
   readonly uri: string = "ws://localhost:3000";
@@ -28,4 +30,19 @@ export class WebSocketService {
     this.socket.emit(eventName,data);
   }
 
+  setRoomOwner(owner) {
+    this.roomOwner = owner;
+  }
+
+  getRoomOwner() {
+    return this.roomOwner;
+  }
+
+  setOnTurn(turn) {
+    this.onTurn = turn;
+  }
+
+  getOnTurn(){
+    return this.onTurn;
+  }
 }

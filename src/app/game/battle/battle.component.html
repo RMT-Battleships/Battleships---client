@@ -1,4 +1,4 @@
-<div *ngIf="currentNumberOfPlayersInRoom === reuiredNumberOfPlayersForGame; else wait">
+<div *ngIf="isOnTurn(); else wait">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg text-center" *ngFor="let board of boards; let i = index">

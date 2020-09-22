@@ -66,9 +66,11 @@ export class BoardService {
             if (j >= ship.x && j < +ship.x + ship.length && i == ship.y) {
               this.boards[0].cells[i][j].points = ship.length;
               this.boards[0].cells[i][j].value = 'ship';
+              this.boards[0].cells[i][j].hit = false;
             } else {
               this.boards[0].cells[i][j].points = -1;
               this.boards[0].cells[i][j].value = 'lock';
+              this.boards[0].cells[i][j].hit = false;
             }
           }
         }

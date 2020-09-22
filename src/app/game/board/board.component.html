@@ -1,11 +1,13 @@
-<table [style.opacity]="i == player ? 0.5 : 1">
+<table [style.opacity]="(i == player) ? 0.5 : 1">
   <tr *ngFor="let row of board.cells; let j = index">
     <td *ngFor="let col of row; let k = index"
         (click)="(i !== player && col.points != -1) ? emitCoordinates($event) : ''"
         [style.cursor]="(i !== player && col.points != -1) ? 'pointer' : 'default'"
         [class.ship]="col.value == 'ship'"
-        [class.sea]="col.value !== 'ship'"
-        [class.lock]="col.points === -1"
+        [class.sea]="col.value == 'sea'"
+        [class.lock]="col.value == 'lock'"
+        [class.hitSea]="isSeaHit(col)"
+        [class.hitShip]="isShipHit(col)"
         class="battleship-tile"
         id="t{{i}}{{j}}{{k}}"
     >

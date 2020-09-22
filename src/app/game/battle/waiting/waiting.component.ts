@@ -15,8 +15,10 @@ export class WaitingComponent implements OnInit {
               private shipService: ShipService) { }
 
   ngOnInit(): void {
-    this.webSocketServe.listen('paired').subscribe(() => {
-      this.webSocketServe.emit('strategy' , this.shipService.placedShips)
+    this.webSocketServe.listen('paired').subscribe((roomOwner) => {
+      this.webSocketServe.setRoomOwner(roomOwner);
+      console.log(this.shipService.getPlacedShips());
+      this.webSocketServe.emit('strategy' , [this.webSocketServe.getRoomOwner(), this.shipService.getPlacedShips()]);
       this.router.navigate(['/game/battle']);
     });
 

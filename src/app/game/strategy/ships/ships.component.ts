@@ -17,9 +17,8 @@ export class ShipsComponent implements DoCheck, OnInit{
   selectedCol: number;
 
   constructor(private shipService: ShipService,
-     private webSockeService: WebSocketService,
-      private boardService: BoardService,
-      protected router: Router) {
+              private webSockeService: WebSocketService,
+              protected router: Router) {
   }
 
   ngOnInit(): void {

@@ -100,4 +100,8 @@ export class ShipService {
   getShips() {
     return this.ships;
   }
+
+  getPlacedShips() {
+    return [...this.placedShips];
+  }
 }

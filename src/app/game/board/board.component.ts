@@ -9,9 +9,9 @@ import { Board } from "../interfaces/board";
 })
 export class BoardComponent implements OnInit {
   @Input() board: Board;
-  @Input() i: number = 0;
-  @Input()  player: number = 0;
-  @Output() coordinates = new EventEmitter<{row:number, col: number}>();
+  @Input() i = 0;
+  @Input()  player = 0;
+  @Output() coordinates = new EventEmitter<{row: number, col: number}>();
 
   constructor() { }
 
@@ -24,6 +24,14 @@ export class BoardComponent implements OnInit {
       row: cellId.substring(2,3),
       col: cellId.substring(3,4)
     });
+  }
+
+  isSeaHit(col) {
+    return (col.value !== 'ship' && col.hit);
+  }
+
+  isShipHit(col) {
+    return (col.value === 'ship' && col.hit);
   }
 
 }

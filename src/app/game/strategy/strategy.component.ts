@@ -8,8 +8,7 @@ import { Ship } from '../interfaces/ship';
 @Component({
   selector: 'app-strategy',
   templateUrl: './strategy.component.html',
-  styleUrls: ['./strategy.component.css'],
-  providers: [ShipService]
+  styleUrls: ['./strategy.component.css']
 })
 export class StrategyComponent implements OnInit {
   board: Board;
