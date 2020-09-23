@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
           if(result[0].document.fields.password.stringValue == this.loginForm.get('password').value){
             console.log("Uspesno ulogovan");
             this.authService.setUsername(this.loginForm.get('username').value);
-            localStorage.setItem('token', "username");
+            localStorage.setItem('token', this.loginForm.get('username').value);
             this.router.navigate(['/user'], {replaceUrl: true});
           }
           else{
