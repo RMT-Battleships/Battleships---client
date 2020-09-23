@@ -23,6 +23,7 @@ import { PassResetComponent } from './account/pass-reset/pass-reset.component';
 import { EditPassComponent } from './account/edit-pass/edit-pass.component';
 import { AccInfoComponent } from './account/acc-info/acc-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

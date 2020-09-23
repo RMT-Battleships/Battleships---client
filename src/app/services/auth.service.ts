@@ -40,6 +40,10 @@ export class AuthService {
 
   private loggedInUser: string;
 
+  userLoggedIn(){
+    return !!localStorage.getItem('token');
+  }
+
   signup(user:UserData){
     const userObj = {
       fields:{

@@ -10,6 +10,7 @@ import { BoardComponent } from './game/board/board.component';
 import { GameComponent } from './game/game.component';
 import { ShipsComponent } from './game/strategy/ships/ships.component';
 import { StrategyComponent } from './game/strategy/strategy.component';
+import { AuthGuard } from './guards/auth.guard';
 import { GuestComponent } from './menu/guest/guest.component';
 import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
@@ -18,13 +19,13 @@ import { RangComponent } from './rang/rang.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'acc-info', component: AccInfoComponent },
+  { path: 'acc-info', canActivate:[AuthGuard], component: AccInfoComponent },
   { path: 'edit-pass', component: EditPassComponent },
   { path: 'singup', component: SingupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'main', component: MainComponent },
   { path: 'guest', component: GuestComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'user', canActivate:[AuthGuard], component: UserComponent },
   { path: 'rang', component: RangComponent },
   {
     path: 'game', component: GameComponent, children:
