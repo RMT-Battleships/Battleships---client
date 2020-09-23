@@ -1,0 +1,31 @@
+div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  text-align: center;
+}
+
+button{
+  border:0;
+  background:  #989C8F;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 0.25em;
+  border: 2px solid #DD4B1A;
+  padding: 14px 40px;
+  width: 200px;
+  outline: none;
+  color: #F0F0F0;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #DD4B1A;
+}

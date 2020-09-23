@@ -1,0 +1,14 @@
+<div class="container">
+  <div *ngIf="outcome; else lose" id="winner" class="col-8 justify-content-center">
+    <h2>Pobeda!!!!</h2>
+    <button [routerLink]="['/user']">Vrati se u meni</button>
+  </div>
+  <ng-template #lose>
+    <div id="loser" class="col-8 justify-content-center">
+      <h2>Više sreće drugi put</h2>
+      <button [routerLink]="['/user']">Vrati se u meni</button>
+    </div>
+  </ng-template>
+</div>
+
+

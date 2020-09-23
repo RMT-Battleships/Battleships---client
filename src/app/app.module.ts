@@ -24,6 +24,7 @@ import { EditPassComponent } from './account/edit-pass/edit-pass.component';
 import { AccInfoComponent } from './account/acc-info/acc-info.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import {OutcomeComponent} from "./game/battle/outcome/outcome.component";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AuthGuard } from './guards/auth.guard';
     SingupComponent,
     PassResetComponent,
     EditPassComponent,
-    AccInfoComponent
+    AccInfoComponent,
+    OutcomeComponent
   ],
   imports: [
     BrowserModule,
