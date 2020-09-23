@@ -39,9 +39,18 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   private loggedInUser: string;
+  private loggedIn: boolean = false;
+
+  login(){
+    this.loggedIn = true;
+  }
+
+  getLoggedIn(){
+    return this.loggedIn;
+  }
 
   userLoggedIn(){
-    return !!localStorage.getItem('token');
+    return !!sessionStorage.getItem('token');
   }
 
   signup(user:UserData){
