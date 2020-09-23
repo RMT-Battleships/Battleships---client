@@ -15,6 +15,7 @@ import { GuestComponent } from './menu/guest/guest.component';
 import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
 import { RangComponent } from './rang/rang.component';
+import {OutcomeComponent} from "./game/battle/outcome/outcome.component";
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
     path: 'game', component: GameComponent, children:
       [{ path: 'strategy', component: StrategyComponent },
       { path: 'battle', component: BattleComponent },
-      { path: 'waiting', component: WaitingComponent }]
+      { path: 'waiting', component: WaitingComponent },
+      { path: 'outcome', component: OutcomeComponent}]
   }
 ];
 

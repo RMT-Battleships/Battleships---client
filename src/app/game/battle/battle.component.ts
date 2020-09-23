@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Board } from '../interfaces/board';
 import { BoardService } from '../services/board.service';
 import { WebSocketService } from '../services/web-socket.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-battle',
@@ -15,7 +16,7 @@ export class BattleComponent implements OnInit {
   player = 0;
   boards: Board[];
 
-  constructor(private boardService: BoardService, private webSocketService: WebSocketService ) { }
+  constructor(private boardService: BoardService, private webSocketService: WebSocketService, private router: Router) { }
 
   ngOnInit(): void {
     this.boards = this.boardService.getBoards();
@@ -33,19 +34,24 @@ export class BattleComponent implements OnInit {
                      break;
             case 2 : cellName = 'ship';
           }
-          if(data.gridIndex != 0) {
+          if (data.gridIndex !== 0) {
             this.boardService.boards[data.gridIndex].cells[col][row].value = cellName;
             this.boards[data.gridIndex].cells[col][row].value = cellName;
           } else {
             this.boardService.boards[data.gridIndex].cells[col][row].hit = (cellValue === 2);
-            this.boards[data.gridIndex].cells[col][row].hit = (cellValue != 0);
+            this.boards[data.gridIndex].cells[col][row].hit = (cellValue !== 0);
           }
           if (data.grid.ship !== undefined){
             this.boardService.setShip(data.grid.ship);
           }
-          console.log(this.boards);
         }
     });
+
+    this.webSocketService.listen('gameover').subscribe( (win) => {
+          console.log('primio');
+          this.webSocketService.setOutcome(win);
+          this.router.navigate(['/game/outcome']);
+      });
   }
 
   fireTorpedo(data){
