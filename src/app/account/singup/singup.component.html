@@ -1,6 +1,7 @@
 <form [formGroup]="signupForm" class="box" (ngSubmit)="onSignup()">
     <h1>Napravi nalog i započni igru!</h1>
     <p *ngIf="show">Uneto korisničko ime već postoji. Pokušaj ponovo.</p>
+    <p *ngIf="emailCorrect">Niste uneli lepo email. Pokušaj ponovo.</p>
     <input type="text" name="" placeholder="Ime" formControlName = "name">
     <input type="text" name="" placeholder="Prezime" formControlName = "surname">
     <input type="email" name="" placeholder="email" formControlName = "email" required>

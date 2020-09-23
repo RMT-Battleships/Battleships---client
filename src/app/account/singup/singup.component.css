@@ -16,6 +16,11 @@
     font-weight: 500;
 }
 
+.box p{
+    color: #DD4B1A;
+    font-weight: 300;
+}
+
 .box input[type = "email"], .box input[type = "text"],.box input[type = "password"]{
     border: 0;
     background: none;
