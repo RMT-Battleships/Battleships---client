@@ -16,8 +16,8 @@
 .hitSea{
   background: repeating-linear-gradient(
     -55deg,
-    rgb(51, 50, 50),
-    rgb(51, 50, 50) 10px,
+    rgb(67, 65, 65),
+    rgb(67, 65, 65)10px,
     rgb(160, 157, 157) 10px,
     rgb(160, 157, 157) 20px
   );
@@ -27,8 +27,8 @@
     -55deg,
     #DD4B1A,
     #DD4B1A 10px,
-    #862809d8 10px,
-    #862809d8 20px
+    rgba(150, 45, 13, 0.85) 10px,
+    rgba(150, 45, 13, 0.85)20px
   );
 }
 table {
