@@ -8,11 +8,12 @@ import * as io from 'socket.io-client';
 })
 export class WebSocketService {
 
+  outcome;
   roomOwner;
   onTurn = false;
 
   socket: any;
-  readonly uri: string = "ws://localhost:3000";
+  readonly uri: string = 'ws://localhost:3000';
 
   constructor(){
     this.socket = io(this.uri);
@@ -44,5 +45,13 @@ export class WebSocketService {
 
   getOnTurn(){
     return this.onTurn;
+  }
+
+  setOutcome(win) {
+    this.outcome = win;
+  }
+
+  getOutcome() {
+    return this.outcome;
   }
 }
