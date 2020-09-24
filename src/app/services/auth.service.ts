@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import { Row } from '../rang/row';
 
@@ -19,9 +19,10 @@ interface UserResult{
     createTime: string,
     fields:{
       username:{stringValue:string},
-      result:{numberValue:number}
-    }
-    readTime:string
+      result:{integerValue:number}
+    },
+    name:string,
+    updateTime:string
   },
   readTime: Date
 }
@@ -35,7 +36,7 @@ interface QueryResult{
       password:{stringValue:string},
       surname:{stringValue:string},
       username:{stringValue:string},
-      result:{numberValue:number}
+      result:{integerValue:number}
     }
     readTime:string
   },
@@ -90,7 +91,7 @@ export class AuthService {
           stringValue:user.surname
         },
         result:{
-          numberValue:user.result
+          integerValue:0
         }
       }
     }
@@ -141,7 +142,18 @@ export class AuthService {
             limit: 10
             } 
         }
-        return this.http.post<UserResult[]>(this.queryUserurl, queryObj);
+        return this.http.post<UserResult[]>(this.queryUserurl, queryObj).pipe(
+          map((res) => {
+            const rows: Row[] = [];
+            console.log(res);
+            res.forEach(result => {
+              const row = new Row(result.document.fields.username.stringValue,
+                result.document.fields.result.integerValue);
+                rows.push(row);
+            })
+            return rows;
+          })
+        )
 
   }
 

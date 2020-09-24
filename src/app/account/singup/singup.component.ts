@@ -18,8 +18,7 @@ export class SingupComponent implements OnInit {
     surname: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    result: new FormControl()
+    password: new FormControl('', Validators.required)
     //confirmedPassword: new FormControl('', Validators.required),
   })
   constructor(private authService: AuthService, protected router: Router) { }

@@ -1,9 +1,9 @@
 <div class="rang">
     <h1>NAJBOLJI REZULTATI</h1>
-    <input  type="text" value="korisničko ime: " disabled>
     <ul>
-        <li *ngFor="let row in rows">
-            {{row}}
+        <li class="row" *ngFor="let row of results">
+           <h4>igrač: {{row.username}}</h4> 
+           <h4>broj poena: {{row.result}}</h4> 
         </li>
     </ul>
 </div>

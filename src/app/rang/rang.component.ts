@@ -17,13 +17,8 @@ export class RangComponent implements OnInit {
   ngOnInit(): void { 
     this.authService.getResults().subscribe(
       (res) =>{
-        console.log(res[0]);
-        console.log(res[0].document.fields.username.stringValue);
-        console.log(res[0].document.fields.result.numberValue);
-        //console.log(res[0]);
-        console.log(res[1].document.fields.username.stringValue);
-        console.log(res[1].document.fields.result.numberValue);
-       
+        console.log(res);
+        this.results = res;
       }
     )
   }

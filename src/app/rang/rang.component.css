@@ -12,4 +12,21 @@
 .rang h1{
     color: #DD4B1A;
     font-weight: 500;
+    text-align: center;
    }
+
+.row{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #DD4B1A;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: #F0F0F0;
+  border-radius: 24px;
+  transition: 0.25s;
+  align-items: center;
+}
