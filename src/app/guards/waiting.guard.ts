@@ -11,7 +11,7 @@ export class WaitingGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.shipService.getNumberOfAvailableShips() > 0){
+    if(this.shipService.getShips().length > 0){
       this.router.navigate(['/game/strategy']);
       return false;
     }

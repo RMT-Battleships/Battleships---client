@@ -105,7 +105,4 @@ export class ShipService {
     return [...this.placedShips];
   }
 
-  getNumberOfAvailableShips(){
-    return this.availableShips.length;
-  }
 }
