@@ -19,7 +19,8 @@ export class SingupComponent implements OnInit {
     email: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    // confirmedPassword: new FormControl('', Validators.required),
+    result: new FormControl()
+    //confirmedPassword: new FormControl('', Validators.required),
   })
   constructor(private authService: AuthService, protected router: Router) { }
 
@@ -50,6 +51,7 @@ export class SingupComponent implements OnInit {
                 console.log(result);
               },
               (error) =>{
+                console.log("ispisujem gresku");
                 console.log(error);
               }
             );

@@ -1,12 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {tap} from 'rxjs/operators'
+import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import { Row } from '../rang/row';
+
+
 interface UserData{
   name: string;
   surname: string,
   email: string,
   username: string,
   password: string
+  result: number
+}
+
+interface UserResult{
+  document?: {
+    createTime: string,
+    fields:{
+      username:{stringValue:string},
+      result:{numberValue:number}
+    }
+    readTime:string
+  },
+  readTime: Date
 }
 
 interface QueryResult{
@@ -18,6 +35,7 @@ interface QueryResult{
       password:{stringValue:string},
       surname:{stringValue:string},
       username:{stringValue:string},
+      result:{numberValue:number}
     }
     readTime:string
   },
@@ -70,6 +88,9 @@ export class AuthService {
         },
         surname:{
           stringValue:user.surname
+        },
+        result:{
+          numberValue:user.result
         }
       }
     }
@@ -97,6 +118,31 @@ export class AuthService {
           }
       } 
       return this.http.post<QueryResult[]>(this.queryUserurl, queryObj);
+  }
+
+  getResults(){
+    const queryObj =  
+        { structuredQuery: 
+            { from: [
+                { collectionId: 'users' 
+            }
+        ], 
+        orderBy: [
+            { field: 
+                { fieldPath: 'result' 
+            }, direction: 'DESCENDING' }
+        ], select: { fields: 
+            [
+                { fieldPath: 'username' }, 
+                { fieldPath: 'result' }
+            ] 
+        }, 
+        
+            limit: 10
+            } 
+        }
+        return this.http.post<UserResult[]>(this.queryUserurl, queryObj);
+
   }
 
   

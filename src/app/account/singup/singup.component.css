@@ -10,6 +10,14 @@
     text-align: center;
 }
 
+.result{
+    height: 0;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
 .box h1{
     color: #DD4B1A;
     text-transform: uppercase;
