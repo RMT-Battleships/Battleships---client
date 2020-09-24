@@ -10,7 +10,8 @@ import { Board } from "../interfaces/board";
 export class BoardComponent implements OnInit {
   @Input() board: Board;
   @Input() i = 0;
-  @Input()  player = 0;
+  @Input() player = 0;
+  @Input() canPlay = false;
   @Output() coordinates = new EventEmitter<{row: number, col: number}>();
 
   constructor() { }

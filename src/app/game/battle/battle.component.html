@@ -1,4 +1,4 @@
-<div class="battle" *ngIf="isOnTurn(); else wait">
+<div class="battle">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg text-center" *ngFor="let board of boards; let i = index">
@@ -6,13 +6,11 @@
           Igrač {{ board.player.id }}
           <span  *ngIf="i == player">(Ti)</span>
           <span  *ngIf="i !== player">(Protivnik)</span>
-         <strong>Rezultat: {{ board.player.score }}</strong>
+         <strong>Rezultat: {{ boards[0].player.score[i] }}</strong>
         </h5>
-        <app-board [board]="board" [i]="i" [player]="player" (coordinates) = "fireTorpedo($event)" ></app-board>
+        <app-board [board]="board" [i]="i" [player]="player" [canPlay]="boards[0].player.onTurn" (coordinates) = "fireTorpedo($event)" ></app-board>
       </div>
     </div>
   </div>
 </div>
-<ng-template #wait>
-  <app-waiting></app-waiting>
-</ng-template>
+

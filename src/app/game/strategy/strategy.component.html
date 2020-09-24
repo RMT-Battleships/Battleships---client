@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md">
-      <app-board [board]="board" [i]="1" (coordinates)="setCoordinates($event)"></app-board>
+      <app-board [board]="board" [i]="1" [canPlay]="true" (coordinates)="setCoordinates($event)"></app-board>
     </div>
     <div class="col-12 col-md available-ships">
       <app-ships (selectedShipEmitter)="setSelectedShip($event)"></app-ships>

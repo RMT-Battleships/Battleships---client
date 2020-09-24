@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from '../../services/web-socket.service';
+import {BoardService} from "../../services/board.service";
 
 @Component({
   selector: 'app-outcome',
@@ -9,10 +10,10 @@ import {WebSocketService} from '../../services/web-socket.service';
 export class OutcomeComponent implements OnInit {
   outcome: boolean;
 
-  constructor(private webSocketService: WebSocketService) { }
+  constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
-    this.outcome = this.webSocketService.getOutcome();
+    this.outcome = this.boardService.getOutcome();
   }
 
 }

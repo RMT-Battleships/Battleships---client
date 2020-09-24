@@ -26,7 +26,11 @@ export class BoardService {
 
     const newPlayer: Player = {
         id: this.playerId++,
-        score: 0
+        onTurn: false,
+        outcome: false,
+        sunkShipsArray: [],
+        sunkShipsNumber: 0,
+        score: [0, 0]
       };
     const board: Board = {
         player: newPlayer,
@@ -40,8 +44,8 @@ export class BoardService {
     return this.boards;
   }
 
-  setShip(ship: Ship): boolean {
-    const boardSize = this.boards[0].cells.length;
+  setShip(ship: Ship, boardId = 0): boolean {
+    const boardSize = this.boards[boardId].cells.length;
     let startI = +ship.y - 1;
     startI = startI < 0 ? 0 : startI;
     let startJ = +ship.x - 1;
@@ -49,8 +53,12 @@ export class BoardService {
     let endI;
     let endJ;
 
-    if (this.overlap(this.boards[0].cells, ship)){
+    if (boardId == 0 && this.overlap(this.boards[boardId].cells, ship)){
       return false;
+    }
+
+    if(boardId != 0) {
+      this.boards[0].player.sunkShipsNumber++;
     }
 
     if (ship.horizontal) {
@@ -63,14 +71,16 @@ export class BoardService {
 
         for (let i = startI; i <= endI; i++) {
           for (let j = startJ; j <= endJ; j++) {
+            console.log(i + " " + j);
             if (j >= ship.x && j < +ship.x + ship.length && i == ship.y) {
-              this.boards[0].cells[i][j].points = ship.length;
-              this.boards[0].cells[i][j].value = 'ship';
-              this.boards[0].cells[i][j].hit = false;
+              this.boards[boardId].cells[i][j].value = 'ship';
             } else {
-              this.boards[0].cells[i][j].points = -1;
-              this.boards[0].cells[i][j].value = 'lock';
-              this.boards[0].cells[i][j].hit = false;
+              console.log('postavio');
+              this.boards[boardId].cells[i][j].value = 'lock';
+              console.log(this.boards[boardId].cells[i][j].value);
+            }
+            if(boardId == 0) {
+              this.boards[boardId].cells[i][j].hit = false;
             }
           }
         }
@@ -86,12 +96,15 @@ export class BoardService {
 
         for (let i = startI; i <= endI; i++) {
           for (let j = startJ; j <= endJ; j++) {
+            console.log(i + " " + j);
             if (i >= ship.y && i < +ship.y + ship.length && j == ship.x) {
-              this.boards[0].cells[i][j].points = ship.length;
-              this.boards[0].cells[i][j].value = 'ship';
+              this.boards[boardId].cells[i][j].value = 'ship';
             } else {
-              this.boards[0].cells[i][j].points = -1;
-              this.boards[0].cells[i][j].value = 'lock';
+              console.log('postavio');
+              this.boards[boardId].cells[i][j].value = 'lock';
+            }
+            if(boardId == 0) {
+              this.boards[boardId].cells[i][j].hit = false;
             }
           }
         }
@@ -117,4 +130,19 @@ export class BoardService {
     return false;
   }
 
+  setPoints(points: number[]) {
+    this.boards[0].player.score = points;
+  }
+
+  setOnTurn(turn) {
+    this.boards[0].player.onTurn = turn;
+  }
+
+  setOutcome(outcome) {
+    this.boards[0].player.outcome = outcome;
+  }
+
+  getOutcome() {
+    return this.boards[0].player.outcome;
+  }
 }

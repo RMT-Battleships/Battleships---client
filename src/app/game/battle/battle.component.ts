@@ -14,6 +14,7 @@ export class BattleComponent implements OnInit {
   @Input() reuiredNumberOfPlayersForGame = 2;
 
   player = 0;
+  points: number;
   boards: Board[];
 
   constructor(private boardService: BoardService, private webSocketService: WebSocketService, private router: Router) { }
@@ -21,7 +22,9 @@ export class BattleComponent implements OnInit {
   ngOnInit(): void {
     this.boards = this.boardService.getBoards();
     this.webSocketService.listen('update').subscribe((data: any) => {
-        this.webSocketService.setOnTurn(data.turn);
+        this.boardService.setOnTurn(data.turn);
+        this.boardService.setPoints(data.points);
+        console.log(data.grid.ships);
         for (let i = 0; i < 100; i++){
           const col = Math.floor(i / 10);
           const row = i % 10;
@@ -35,21 +38,27 @@ export class BattleComponent implements OnInit {
             case 2 : cellName = 'ship';
           }
           if (data.gridIndex !== 0) {
-            this.boardService.boards[data.gridIndex].cells[col][row].value = cellName;
-            this.boards[data.gridIndex].cells[col][row].value = cellName;
+            if(this.boardService.boards[data.gridIndex].cells[col][row].value == 'sea') {
+              this.boardService.boards[data.gridIndex].cells[col][row].value = cellName;
+            }
           } else {
-            this.boardService.boards[data.gridIndex].cells[col][row].hit = (cellValue === 2);
-            this.boards[data.gridIndex].cells[col][row].hit = (cellValue !== 0);
+            this.boardService.boards[data.gridIndex].cells[col][row].hit = (cellValue !== 0);
           }
           if (data.grid.ship !== undefined){
             this.boardService.setShip(data.grid.ship);
           }
         }
+        if(data.gridIndex == 1){
+         for(let i=0;i<data.grid.ships.length;i++){
+           this.boardService.setShip(data.grid.ships[i], 1);
+         }
+
+        }
+        this.boards = this.boardService.getBoards();
     });
 
     this.webSocketService.listen('gameover').subscribe( (win) => {
-          console.log('primio');
-          this.webSocketService.setOutcome(win);
+          this.boardService.setOutcome(win);
           this.router.navigate(['/game/outcome']);
       });
   }
@@ -59,7 +68,4 @@ export class BattleComponent implements OnInit {
     this.webSocketService.emit('torpedo', [this.webSocketService.getRoomOwner(), {x: data.col, y: data.row}]);
   }
 
-  isOnTurn() {
-    return this.webSocketService.getOnTurn();
-  }
 }
