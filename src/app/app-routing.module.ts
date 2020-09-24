@@ -16,6 +16,8 @@ import { MainComponent } from './menu/main/main.component';
 import { UserComponent } from './menu/user/user.component';
 import { RangComponent } from './rang/rang.component';
 import {OutcomeComponent} from "./game/battle/outcome/outcome.component";
+import { GameGuard } from './guards/game.guard';
+import { WaitingGuard } from './guards/waiting.guard';
 
 
 const routes: Routes = [
@@ -31,9 +33,9 @@ const routes: Routes = [
   {
     path: 'game', component: GameComponent, children:
       [{ path: 'strategy', component: StrategyComponent },
-      { path: 'battle', component: BattleComponent },
-      { path: 'waiting', component: WaitingComponent },
-      { path: 'outcome', component: OutcomeComponent}]
+      { path: 'battle', canActivate:[GameGuard], component: BattleComponent },
+      { path: 'waiting', canActivate:[WaitingGuard], component: WaitingComponent },
+      { path: 'outcome', canActivate:[GameGuard], component: OutcomeComponent}]
   }
 ];
 
