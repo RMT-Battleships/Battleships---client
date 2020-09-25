@@ -3,6 +3,7 @@
 <form [formGroup] = "loginForm" class = "box" (ngSubmit) = "onLogin()">
     <h1>Prijava</h1>
     <p *ngIf="show">Pogresna šifra ili username. Probaj ponovo!</p>
+    <p *ngIf="loggedIn">Vec ste ulogovanoi!!!</p>
     <input type="text" name = "" placeholder="Korisničko ime" formControlName = "username">
     <input type="password" name = "" placeholder="Šifra" formControlName = "password">
     <button class="but" type="submit" [disabled] = "loginForm.invalid">POTVRDI!</button>

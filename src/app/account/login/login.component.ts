@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  show:boolean = false;
-  
+  show: boolean = false;
+  loggedIn: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -23,31 +23,39 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogin(){
+  onLogin() {
     this.authService.checkIfUsernameExist(this.loginForm.get('username').value).subscribe(
-      (result)=>{
-        if(result[0].hasOwnProperty('document')){
+      (result) => {
+        if (result[0].hasOwnProperty('document')) {
           console.log("postoji");
-          if(result[0].document.fields.password.stringValue == this.loginForm.get('password').value){
-            console.log("Uspesno ulogovan");
-            this.authService.setUsername(this.loginForm.get('username').value);
-            sessionStorage.setItem('token', this.loginForm.get('username').value);
-            this.authService.login();
-            this.router.navigate(['/user'], {replaceUrl: true});
+          if (result[0].document.fields.password.stringValue == this.loginForm.get('password').value) {
+            if (this.loginForm.get('password').value === localStorage.getItem('token')) {
+              this.loggedIn = true;
+              this.loginForm.reset();
+            }
+            else {
+              console.log("Uspesno ulogovan");
+              this.authService.setUsername(this.loginForm.get('username').value);
+              sessionStorage.setItem('token', this.loginForm.get('username').value);
+              this.authService.login();
+              localStorage.setItem('token', this.loginForm.get('username').value);
+              this.router.navigate(['/user'], { replaceUrl: true });
+            }
+
           }
-          else{
+          else {
             this.show = true;
             this.loginForm.reset();
             console.log("Pogresna sifra");
           }
         }
-        else{
+        else {
           this.show = true;
           this.loginForm.reset();
           console.log("Korisnik ne postoji u bazi");
         }
       },
-      (error) =>{
+      (error) => {
         console.log(error);
       }
     );

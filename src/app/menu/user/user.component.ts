@@ -12,4 +12,11 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ /* ngOnClick(): void{
+    this.logout();
+  }*/
+  logout(){
+    localStorage.clear();
+  }
+
 }

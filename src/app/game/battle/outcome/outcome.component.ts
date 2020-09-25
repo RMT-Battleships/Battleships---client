@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {WebSocketService} from '../../services/web-socket.service';
-import {BoardService} from "../../services/board.service";
+import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from '../../services/web-socket.service';
+import { BoardService } from "../../services/board.service";
 
 @Component({
   selector: 'app-outcome',
@@ -16,8 +16,8 @@ export class OutcomeComponent implements OnInit {
     this.outcome = this.boardService.getOutcome();
     this.points = this.boardService.getPoints();
     this.pointswin = this.points + 12;
-    console.log(this.outcome);
-    console.log("POENI" + " " + this.points);
+    //console.log(this.outcome);
+    //console.log("POENI" + " " + this.points);
   }
 
 }
