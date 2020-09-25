@@ -8,12 +8,16 @@ import {BoardService} from "../../services/board.service";
   styleUrls: ['./outcome.component.css']
 })
 export class OutcomeComponent implements OnInit {
-  outcome: boolean;
+  outcome: boolean; points: number; pointswin: number;
 
   constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {
     this.outcome = this.boardService.getOutcome();
+    this.points = this.boardService.getPoints();
+    this.pointswin = this.points + 12;
+    console.log(this.outcome);
+    console.log("POENI" + " " + this.points);
   }
 
 }

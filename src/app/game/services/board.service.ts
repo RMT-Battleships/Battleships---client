@@ -71,13 +71,13 @@ export class BoardService {
 
         for (let i = startI; i <= endI; i++) {
           for (let j = startJ; j <= endJ; j++) {
-            console.log(i + " " + j);
+           // console.log(i + " " + j);
             if (j >= ship.x && j < +ship.x + ship.length && i == ship.y) {
               this.boards[boardId].cells[i][j].value = 'ship';
             } else {
-              console.log('postavio');
+            //  console.log('postavio');
               this.boards[boardId].cells[i][j].value = 'lock';
-              console.log(this.boards[boardId].cells[i][j].value);
+             // console.log(this.boards[boardId].cells[i][j].value);
             }
             if(boardId == 0) {
               this.boards[boardId].cells[i][j].hit = false;
@@ -96,11 +96,11 @@ export class BoardService {
 
         for (let i = startI; i <= endI; i++) {
           for (let j = startJ; j <= endJ; j++) {
-            console.log(i + " " + j);
+           // console.log(i + " " + j);
             if (i >= ship.y && i < +ship.y + ship.length && j == ship.x) {
               this.boards[boardId].cells[i][j].value = 'ship';
             } else {
-              console.log('postavio');
+             // console.log('postavio');
               this.boards[boardId].cells[i][j].value = 'lock';
             }
             if(boardId == 0) {
@@ -132,6 +132,10 @@ export class BoardService {
 
   setPoints(points: number[]) {
     this.boards[0].player.score = points;
+  }
+
+  getPoints(){
+    return this.boards[0].player.score[0];
   }
 
   setOnTurn(turn) {

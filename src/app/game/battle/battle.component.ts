@@ -24,7 +24,7 @@ export class BattleComponent implements OnInit {
     this.webSocketService.listen('update').subscribe((data: any) => {
         this.boardService.setOnTurn(data.turn);
         this.boardService.setPoints(data.points);
-        console.log(data.grid.ships);
+        //console.log(data.grid.ships);
         for (let i = 0; i < 100; i++){
           const col = Math.floor(i / 10);
           const row = i % 10;
@@ -64,7 +64,7 @@ export class BattleComponent implements OnInit {
   }
 
   fireTorpedo(data){
-    console.log(data);
+    //console.log(data);
     this.webSocketService.emit('torpedo', [this.webSocketService.getRoomOwner(), {x: data.col, y: data.row}]);
   }
 

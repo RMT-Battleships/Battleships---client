@@ -33,9 +33,9 @@ const routes: Routes = [
   {
     path: 'game', component: GameComponent, children:
       [{ path: 'strategy', component: StrategyComponent },
-      { path: 'battle', canActivate:[GameGuard], component: BattleComponent },
-      { path: 'waiting', canActivate:[WaitingGuard], component: WaitingComponent },
-      { path: 'outcome', canActivate:[GameGuard], component: OutcomeComponent}]
+      { path: 'battle',  component: BattleComponent },
+      { path: 'waiting', component: WaitingComponent },
+      { path: 'outcome',  component: OutcomeComponent}]
   }
 ];
 
