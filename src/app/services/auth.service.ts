@@ -164,7 +164,8 @@ export class AuthService {
   }
 
   getUsername() {
-    return this.loggedInUser;
+    return sessionStorage.getItem('token');
+    // return this.loggedInUser;
   }
 
   getUserByUsername(username:string){
